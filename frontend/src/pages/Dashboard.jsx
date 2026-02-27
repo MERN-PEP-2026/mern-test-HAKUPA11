@@ -22,7 +22,7 @@ const Dashboard = () => {
   const fetchTasks = async () => {
     setLoading(true);
     try {
-      const url = filter === 'all' ? 'http://localhost:5000/api/tasks' : `http://localhost:5000/api/tasks?status=${filter}`;
+      const url = filter === 'all' ? 'https://mern-test-hakupa11.onrender.com/api/tasks' : `https://mern-test-hakupa11.onrender.com/api/tasks?status=${filter}`;
       const res = await axios.get(url);
       setTasks(res.data.tasks);
     } catch (err) {
@@ -37,7 +37,7 @@ const Dashboard = () => {
     if (!newTask.title.trim()) return;
     setCreating(true);
     try {
-      const res = await axios.post('http://localhost:5000/api/tasks', newTask);
+      const res = await axios.post('https://mern-test-hakupa11.onrender.com/api/tasks', newTask);
       setTasks([res.data.task, ...tasks]);
       setNewTask({ title: '', description: '' });
       setShowForm(false);
@@ -50,7 +50,7 @@ const Dashboard = () => {
 
   const handleStatusToggle = async (id, newStatus) => {
     try {
-      const res = await axios.put(`http://localhost:5000/api/tasks/${id}`, { status: newStatus });
+      const res = await axios.put(`https://mern-test-hakupa11.onrender.com/api/tasks/${id}`, { status: newStatus });
       setTasks(tasks.map((t) => (t._id === id ? res.data.task : t)));
     } catch {
       setError('Failed to update task status.');
@@ -59,7 +59,7 @@ const Dashboard = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/tasks/${id}`);
+      await axios.delete(`https://mern-test-hakupa11.onrender.com/api/tasks/${id}`);
       setTasks(tasks.filter((t) => t._id !== id));
     } catch {
       setError('Failed to delete task.');
@@ -68,7 +68,7 @@ const Dashboard = () => {
 
   const handleEditSave = async (id, data) => {
     try {
-      const res = await axios.put(`http://localhost:5000/api/tasks/${id}`, data);
+      const res = await axios.put(`https://mern-test-hakupa11.onrender.com/api/tasks/${id}`, data);
       setTasks(tasks.map((t) => (t._id === id ? res.data.task : t)));
       setEditingTask(null);
     } catch {

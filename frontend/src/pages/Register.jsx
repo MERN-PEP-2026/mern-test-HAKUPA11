@@ -19,7 +19,7 @@ const Register = ({ onNavigate }) => {
     setError('');
 
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/register', formData);
+      const res = await axios.post('https://mern-test-hakupa11.onrender.com/api/auth/register', formData);
       login(res.data.user, res.data.token);
     } catch (err) {
       setError(err.response?.data?.message || 'Registration failed. Try again.');
